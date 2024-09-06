@@ -1,0 +1,32 @@
+#Travaillant avec une machine dont la touche b ne marche pas et pour ne pas avoir
+à le saisir à chaque fois avec le clavier virtuel (ex. pour la cmde crontab)
+j'ai créé un alias d'accès à crontab denommé cron.
+
+''' 
+sudo vim /home/ec2-user/.bashrc
+#Ajout de la ligne suivante dans le fichier .bashrc
+	 alias cron='sudo crontab -e'
+
+'''
+#Création et édition du script goGoogle.sh
+
+vim goGoogle.sh
+
+#édition du script... puis en mode commande je sauvegarde et quitte l'éditeur
+
+:wq
+
+#Accord de permission d'exécution
+
+chmod +x goGoogle.sh
+
+#Configuration du crontab pour l'exécution du Script toutes les minutes et éciture de la sortie sur fichier.
+#Utilisation de l'alias cron
+cron
+
+'''
+* * * * * /home/ec2-user/goGoogle.sh >> JournGoGoogle.txt
+'''
+#Affichage en temps réel du fichier journal JournGoGoogle.txt
+
+tail -f fichierJourn.txt

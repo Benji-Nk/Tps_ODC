@@ -1,0 +1,53 @@
+Read me de l'exercice 7
+Pour verifier l'existence du fichier server.conf en local (cad dans un ec2 avec Amazon linux 3)  et le cas echeant le telecharger depuis un repository git, voici la demarche à suivre :
+
+A. Cloner un référentiel Git sur Amazon Linux 3
+Pour cloner un référentiel Git sur Amazon Linux 3, vous pouvez suivre ces étapes :
+
+1. Installer Git:
+
+Assurez-vous que Git est installé sur votre instance Amazon Linux 3. Vous pouvez l'installer en utilisant la commande suivante :
+Bash
+sudo yum install git
+
+2. Naviguer vers le répertoire de destination:
+
+Accédez au répertoire où vous souhaitez cloner le référentiel Git. Vous pouvez utiliser la commande cd pour naviguer dans les répertoires.
+Pour mon cas : cd 
+3. Cloner le référentiel:
+
+Utilisez la commande git clone suivie de l'URL du référentiel Git que vous souhaitez cloner. Par exemple, pour cloner le référentiel https://github.com/git-scm/git dans le répertoire actuel, exécutez la commande suivante :
+Bash
+git clone https://github.com/git-scm/git
+
+Remplacez https://github.com/git-scm/git par l'URL de votre référentiel Git.
+pour mon cas https://github.com/Benji-Nk/Tps_ODC
+
+B. CREER LE SCRIPT DE RECHERCHE ET TELECHARGEMENT DU FICHIER
+
+Voici l'explication du script en attache :
+Téléchargement du fichier unique:
+
+Au lieu de cloner l'intégralité du dépôt Git, la commande git archive est utilisée pour extraire uniquement le fichier "server.conf" du dépôt.
+L'option --format=tar spécifie le format d'archive tar pour le fichier extrait.
+L'option HEAD $fichier indique à git archive d'extraire la dernière version du fichier "server.conf".
+Extraction et nettoyage:
+
+La commande tar -xf "$local_dir/server.conf.tar" -C "$local_dir" extrait le contenu de l'archive tar dans le dossier local spécifié.
+La commande rm "$local_dir/server.conf.tar" supprime l'archive tar temporaire après l'extraction.
+Avantages de cette approche:
+
+Téléchargement ciblé: Télécharge uniquement le fichier "server.conf" au lieu de l'intégralité du dépôt Git, réduisant ainsi la bande passante et l'espace de stockage.
+Contrôle du contenu: Vous n'extrayez que le fichier spécifique dont vous avez besoin, ce qui peut être utile si le dépôt contient de nombreux fichiers.
+Remarques:
+
+Assurez-vous que vous avez installé Git sur votre système et que vous disposez des autorisations d'accès au dépôt Git.
+Vous pouvez modifier le nom du fichier journal et le chemin d'accès au dossier local selon vos besoins.
+Rendez-vous dans le repertoire locale ou se trouve le referentiel cloné, 
+
+Voici quelques ressources supplémentaires pour en savoir plus sur Git sur Amazon Linux 3 :
+
+Documentation Git : https://git-scm.com/doc
+Tutoriel Git pour débutants : https://www.atlassian.com/git/tutorials
+Utilisation de Git sur Amazon EC2 : https://gist.github.com/matthewoden/b29353e266c554e04be8ea2058bcc2a0
+J'espère que cela vous aide à cloner votre référentiel Git sur Amazon Linux 3.
